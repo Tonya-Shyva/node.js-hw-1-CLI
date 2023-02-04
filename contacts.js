@@ -1,6 +1,7 @@
 const fs = require("fs").promises;
 const path = require("path");
 const { uid } = require("uid");
+require("colors");
 
 const contactsPath = path.join(__dirname, "db", "contacts.json");
 
@@ -31,11 +32,21 @@ const addContact = async (name, email, phone) => {
       email,
       phone,
     };
+    if (
+      [...data].find(
+        ({ name, email, phone }) =>
+          name.toLowerCase() === newContact.name.toLowerCase() ||
+          email === newContact.email ||
+          phone === newContact.phone
+      )
+    ) {
+      return console.log("This contact already exist".yellow);
+    }
     const newData = [...data, newContact];
-    await fs.writeFile(contactsPath, JSON.stringify(newData, null, 2), "utf-8");
+    fs.writeFile(contactsPath, JSON.stringify(newData, null, 2), "utf-8");
     return newData;
   } catch (err) {
-    console.log(`Error: ${err.message}`);
+    return console.log(`Error: ${err.message}`.red);
   }
 };
 
@@ -43,10 +54,10 @@ const removeContact = async (contactId) => {
   try {
     const data = await listContacts();
     const newData = data.filter(({ id }) => id !== contactId);
-    await fs.writeFile(contactsPath, JSON.stringify(newData, null, 2), "utf-8");
+    fs.writeFile(contactsPath, JSON.stringify(newData, null, 2), "utf-8");
     return newData;
   } catch (err) {
-    console.log(`Error: ${err.message}`);
+    console.log(`Error: ${err.message}`.red);
   }
 };
 
