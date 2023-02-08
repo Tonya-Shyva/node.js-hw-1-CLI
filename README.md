@@ -4,12 +4,12 @@
 
 # Get contact by id:<br/>
 
-[node index.js --action get --id=5](https://prnt.sc/kSi66D4JCauw)
+[node index.js --action get --id=5](https://prnt.sc/94xHboywnmQ4)
 
 # Add new contact:<br/>
 
-[node index.js --action add --name="Mango" --email="mango@gmail.com" --phone="322-22-22"](https://prnt.sc/T0FR-Bg7slmh)
+[node index.js --action add --name="Mango" --email="mango@gmail.com" --phone="322-22-22"](https://prnt.sc/rJCGGf5R4nKC)
 
-# Delete contact by id:<br/>
+# Remove contact by id:<br/>
 
-[node index.js --action="remove" --id=3](https://prnt.sc/2M5ejkhEZZ7m)
+[node index.js --action="remove" --id=3](https://prnt.sc/oxv4EerLau-0)

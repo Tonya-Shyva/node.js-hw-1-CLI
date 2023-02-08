@@ -28,17 +28,20 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 
     case "get":
       const contact = await getContactById(id);
+      if (!contact) {
+        throw new Error(`Contact with id=${id} not found`);
+      }
       console.table(contact);
       break;
 
     case "add":
-      const newContacts = await addContact(name, email, phone);
-      console.table(newContacts);
+      const addedContact = await addContact(name, email, phone);
+      console.table(addedContact);
       break;
 
     case "remove":
-      const updatedContacts = await removeContact(id);
-      console.table(updatedContacts);
+      const removedContact = await removeContact(id);
+      console.table(removedContact);
       break;
 
     default:
